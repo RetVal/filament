@@ -59,6 +59,8 @@ public:
         Builder& tangents(const filament::math::float4*) noexcept;
         Builder& uvs(const filament::math::float2*) noexcept;
         Builder& positions(const filament::math::float3*) noexcept;
+
+        Builder& triangleCount(uint32_t triangleCount) noexcept;
         Builder& triangles(const filament::math::uint3*) noexcept;
         Builder& triangles(const filament::math::ushort3*) noexcept;
 

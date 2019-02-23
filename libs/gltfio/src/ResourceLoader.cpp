@@ -261,11 +261,21 @@ void ResourceLoader::computeTangents(const FFilamentAsset* asset) {
 
         // Compute surface orientation quaternions.
         short4* quats = (short4*) malloc(sizeof(short4) * vertexCount);
-        auto helper = geometry::SurfaceOrientation::Builder()
+        auto sob = geometry::SurfaceOrientation::Builder()
             .vertexCount(vertexCount)
-            .normals(fp32Normals.data())
-            .tangents(fp32Tangents.data())
-            .build();
+            .normals(fp32Normals.data());
+
+        if (tangentsInfo) {
+            sob.tangents(fp32Tangents.data())
+        } else if (...) {
+            sob
+                .triangleCount(?)
+                .triangles(?)
+                .positions(?)
+                .uvs(?);
+        }
+
+        auto helper = sob.build();
         helper->getQuats(quats, vertexCount);
         geometry::SurfaceOrientation::destroy(helper);
 
